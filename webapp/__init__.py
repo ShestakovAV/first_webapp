@@ -3,6 +3,7 @@ from flask.templating import render_template_string
 from webapp.weather import weather_by_city
 from webapp.python_news_org import get_python_news
 
+
 def create_app():
     app = Flask(__name__)
     app.config.from_pyfile('config.py')
