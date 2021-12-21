@@ -1,4 +1,5 @@
 from datetime import datetime
+from os import pardir
 import requests
 from bs4 import BeautifulSoup
 
@@ -21,7 +22,7 @@ def get_python_news():
         for news in all_news:
             title = news.find('a').text
             url = news.find('a')['href']
-            published = news.find('time').text
+            published = news.find('time')['datetime']
 
             try:
                 published = datetime.strptime(published, '%Y-%m-%d')
@@ -36,3 +37,6 @@ def save_news(title, url, published):
         new_news = News(title=title, url=url, published=published)
         db.session.add(new_news)
         db.session.commit()
+
+if __name__ == "__main__":
+    get_python_news()
