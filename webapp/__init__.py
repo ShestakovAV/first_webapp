@@ -3,7 +3,7 @@ from flask.templating import render_template_string
 from webapp.model import db, News
 from webapp.weather import weather_by_city
 from webapp.python_news_org import get_python_news
-from webapp.model import LoginForm
+from webapp.forms import LoginForm
 
 
 def create_app():
@@ -20,10 +20,10 @@ def create_app():
         return render_template('index.html', page_title=title, weather=weather, news_list=news_list)
     
     @app.route('/login')
-def login():
-    title = "Авторизация"
-    login_form = LoginForm()
-    return render_template('login.html', page_title=title, form=login_form)
+    def login():
+        title = "Авторизация"
+        login_form = LoginForm()
+        return render_template('login.html', page_title=title, form=login_form)
 
     return app
  
